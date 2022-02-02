@@ -9,7 +9,7 @@ import { KeyboardAvoidingView } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { QueryClientProvider } from 'react-query'
 
-import { client, FONTS, tw } from './src/lib'
+import { client, FONTS, theme, tw } from './src/lib'
 import { MainNavigator } from './src/navigators'
 import { Landing } from './src/scenes'
 import { useAuth } from './src/stores'
@@ -17,7 +17,7 @@ import { useAuth } from './src/stores'
 const Rom: FunctionComponent = () => {
   const [loaded] = useFonts(FONTS)
 
-  const [{ account, loading }, { init }] = useAuth()
+  const [{ authenticated, loading }, { init }] = useAuth()
 
   useEffect(() => {
     init()
@@ -33,8 +33,8 @@ const Rom: FunctionComponent = () => {
 
       <SafeAreaProvider>
         <KeyboardAvoidingView behavior="padding" style={tw`flex-1`}>
-          <NavigationContainer>
-            {account ? <MainNavigator /> : <Landing />}
+          <NavigationContainer theme={theme}>
+            {authenticated ? <MainNavigator /> : <Landing />}
           </NavigationContainer>
         </KeyboardAvoidingView>
       </SafeAreaProvider>

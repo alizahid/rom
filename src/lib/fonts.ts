@@ -1,6 +1,6 @@
 export const FONTS = {
-  'Inter-Bold': require('../../assets/fonts/Inter-Bold.otf'),
-  'Inter-Medium': require('../../assets/fonts/Inter-Medium.otf'),
-  'Inter-Regular': require('../../assets/fonts/Inter-Regular.otf'),
-  'Inter-SemiBold': require('../../assets/fonts/Inter-SemiBold.otf')
+  'IBMPlexMono-Bold': require('../../assets/fonts/IBMPlexMono-Bold.ttf'),
+  'IBMPlexMono-Medium': require('../../assets/fonts/IBMPlexMono-Medium.ttf'),
+  'IBMPlexMono-Regular': require('../../assets/fonts/IBMPlexMono-Regular.ttf'),
+  'IBMPlexMono-SemiBold': require('../../assets/fonts/IBMPlexMono-SemiBold.ttf')
 }

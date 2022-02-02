@@ -9,13 +9,16 @@ import {
 } from 'react-native'
 
 import { tw } from '../../lib'
+import { Spinner } from './spinner'
 
 type Props = {
+  loading?: boolean
   style?: StyleProp<ViewStyle>
 } & Pick<ButtonProps, 'disabled' | 'title' | 'onPress'>
 
 export const Button: FunctionComponent<Props> = ({
   disabled,
+  loading,
   onPress,
   style,
   title
@@ -25,11 +28,13 @@ export const Button: FunctionComponent<Props> = ({
     onPress={onPress}
     style={({ pressed }) => [
       tw.style(
-        'items-center justify-center h-12 rounded-lg bg-primary-600',
+        'items-center justify-center h-12 rounded-lg bg-primary-600 flex-row',
         pressed && 'bg-opacity-80'
       ),
       style
     ]}>
-    <Text style={tw`text-base text-white font-rom-semibold`}>{title}</Text>
+    <Text style={tw`text-base text-white font-render-semibold`}>{title}</Text>
+
+    {loading && <Spinner light style={tw`ml-3`} />}
   </Pressable>
 )

@@ -1,4 +1,7 @@
+export * from './api'
 export * from './client'
+export * from './config'
 export * from './fonts'
 export * from './storage'
 export * from './tailwind'
+export * from './theme'

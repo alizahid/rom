@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const colors = require('tailwindcss/colors')
 
 module.exports = {
@@ -10,10 +11,10 @@ module.exports = {
       }
     },
     fontFamily: {
-      'rom-bold': ['Inter-Bold'],
-      'rom-medium': ['Inter-Medium'],
-      'rom-regular': ['Inter-Regular'],
-      'rom-semibold': ['Inter-SemiBold']
+      'render-bold': ['IBMPlexMono-Bold'],
+      'render-medium': ['IBMPlexMono-Medium'],
+      'render-regular': ['IBMPlexMono-Regular'],
+      'render-semibold': ['IBMPlexMono-SemiBold']
     }
   }
 }

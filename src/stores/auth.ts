@@ -1,60 +1,74 @@
 import { Action, createHook, createStore } from 'react-sweet-state'
 
+import { fetchOwners } from '../hooks'
 import { storage } from '../lib'
-import { Account } from '../types/auth'
 
 type State = {
-  account?: Account
-  accounts: Array<Account>
+  authenticated: boolean
+  authenticating: boolean
   loading: boolean
+  owner?: string
 }
 
 const initialState: State = {
-  accounts: [],
+  authenticated: false,
+  authenticating: false,
   loading: true
 }
 
 type Actions = typeof actions
 
 const actions = {
-  addAccount:
-    (account: Account): Action<State> =>
-    async ({ setState }) => {
-      setState({
-        account
-      })
-
-      await storage.put<Account>('account', account)
-
-      const accounts = await storage.get<Array<Account>>('accounts')
-
-      if (accounts) {
-        await storage.put('accounts', [...accounts, account])
-      } else {
-        await storage.put('accounts', [account])
-      }
-    },
   init:
     (): Action<State> =>
     async ({ setState }) => {
-      const accounts = await storage.get<Array<Account>>('accounts')
-      const account = await storage.get<Account>('account')
-
-      if (accounts) {
-        setState({
-          accounts
-        })
-      }
-
-      if (account) {
-        setState({
-          account
-        })
-      }
+      const token = await storage.get<string>('token')
+      const owner = await storage.get<string>('owner')
 
       setState({
-        loading: false
+        authenticated: !!token,
+        loading: false,
+        owner
       })
+    },
+  setOwner:
+    (owner: string): Action<State> =>
+    async ({ setState }) => {
+      setState({
+        owner
+      })
+
+      await storage.put('owner', owner)
+    },
+  signIn:
+    (token: string): Action<State> =>
+    async ({ setState }) => {
+      setState({
+        authenticating: true
+      })
+
+      await storage.put('token', token)
+
+      const owners = await fetchOwners()
+
+      const owner = owners[0].id
+
+      await storage.put('owner', owner)
+
+      setState({
+        authenticated: true,
+        authenticating: false,
+        owner
+      })
+    },
+  signOut:
+    (): Action<State> =>
+    async ({ setState }) => {
+      setState({
+        authenticated: false
+      })
+
+      await storage.remove('token')
     }
 }
 
