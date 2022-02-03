@@ -1,3 +1,5 @@
 import { create } from 'twrnc'
 
-export const tw = create(require('../../tailwind.config'))
+import config from '../../tailwind.config'
+
+export const tw = create(config)

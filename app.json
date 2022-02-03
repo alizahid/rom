@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Render on Mobile",
-    "slug": "render",
+    "name": "Blender for Render",
+    "slug": "blender",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

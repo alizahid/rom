@@ -20,7 +20,7 @@ export const Service: FunctionComponent<Props> = ({ route }) => {
     <ScrollView
       contentContainerStyle={tw`p-4`}
       refreshControl={<Refresher onRefresh={reload} refreshing={reloading} />}>
-      <Text style={tw`text-xs font-render-mono`}>
+      <Text style={tw`text-xs font-blender-mono`}>
         {JSON.stringify(service, null, 2)}
       </Text>
     </ScrollView>

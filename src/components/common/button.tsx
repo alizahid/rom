@@ -32,7 +32,7 @@ export const Button: FunctionComponent<Props> = ({
       ),
       style
     ]}>
-    <Text style={tw`text-base text-white font-render-bold`}>{title}</Text>
+    <Text style={tw`text-base text-white font-blender-bold`}>{title}</Text>
 
     {loading && <Spinner light style={tw`ml-3`} />}
   </Pressable>

@@ -20,13 +20,13 @@ type Props = {
 export const Input = forwardRef<TextInput, Props>(
   ({ label, style, ...props }, ref) => (
     <View style={style}>
-      <Text style={tw`text-sm text-gray-600 font-render-medium`}>{label}</Text>
+      <Text style={tw`text-sm text-gray-600 font-blender-medium`}>{label}</Text>
 
       <TextInput
         {...props}
         placeholderTextColor={tw.color('gray-600')}
         ref={ref}
-        style={tw`w-full h-12 px-4 mt-2 text-base leading-tight bg-gray-100 rounded-lg font-render-regular`}
+        style={tw`w-full h-12 px-4 mt-2 text-base leading-tight bg-gray-100 rounded-lg font-blender-regular`}
       />
     </View>
   )

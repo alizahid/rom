@@ -7,14 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.green
+        primary: colors.teal
       }
     },
     fontFamily: {
-      'render-bold': ['Satoshi-Bold'],
-      'render-medium': ['Satoshi-Medium'],
-      'render-mono': ['iAWriterMonoS-Regular'],
-      'render-regular': ['Satoshi-Regular']
+      'blender-bold': ['Satoshi-Bold'],
+      'blender-medium': ['Satoshi-Medium'],
+      'blender-mono': ['iAWriterMonoS-Regular'],
+      'blender-regular': ['Satoshi-Regular']
     }
   }
 }

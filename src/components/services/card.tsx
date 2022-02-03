@@ -16,19 +16,19 @@ export const ServiceCard: FunctionComponent<Props> = ({ item, owners }) => {
     <View style={tw`flex-row`}>
       <View style={tw`flex-1`}>
         {owner && (
-          <Text style={tw`text-xs text-gray-600 font-render-medium`}>
+          <Text style={tw`text-xs text-gray-600 font-blender-medium`}>
             {owner.name}
           </Text>
         )}
 
-        <Text style={tw`mt-2 text-base text-black font-render-medium`}>
+        <Text style={tw`mt-2 text-base text-black font-blender-medium`}>
           {item.name}
         </Text>
 
         <View style={tw`flex-row mt-2`}>
           <View style={tw`p-1 bg-gray-100 rounded`}>
             <Text
-              style={tw`text-xs leading-tight text-gray-600 font-render-mono`}>
+              style={tw`text-xs leading-tight text-gray-600 font-blender-mono`}>
               {item.type}
             </Text>
           </View>
@@ -36,14 +36,14 @@ export const ServiceCard: FunctionComponent<Props> = ({ item, owners }) => {
           {item.type !== 'static_site' && (
             <View style={tw`p-1 ml-2 bg-gray-100 rounded`}>
               <Text
-                style={tw`text-xs leading-tight text-gray-600 font-render-mono`}>
+                style={tw`text-xs leading-tight text-gray-600 font-blender-mono`}>
                 {item.serviceDetails.env}
               </Text>
             </View>
           )}
         </View>
 
-        <Text style={tw`mt-2 text-xs text-gray-400 font-render-regular`}>
+        <Text style={tw`mt-2 text-xs text-gray-400 font-blender-regular`}>
           Updated on{' '}
           {item.updatedAt.toLocaleString('en-US', {
             dateStyle: 'medium',

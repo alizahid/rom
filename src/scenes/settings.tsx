@@ -26,7 +26,7 @@ export const Settings: FunctionComponent<Props> = () => (
               type={type as ArrowType}
             />
 
-            <Text style={tw`ml-2 text-sm font-render-regular`}>
+            <Text style={tw`ml-2 text-sm font-blender-regular`}>
               {direction}
             </Text>
           </View>

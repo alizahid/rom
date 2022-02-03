@@ -15,7 +15,7 @@ export const StackHeader: FunctionComponent<StackHeaderProps> = ({
 }) => (
   <SafeAreaView edges={['top']} style={tw`bg-white border-b border-gray-200`}>
     <View style={tw`p-3`}>
-      <Text style={tw`text-base text-center text-black font-render-medium`}>
+      <Text style={tw`text-base text-center text-black font-blender-medium`}>
         {options.title ?? route.name}
       </Text>
 
