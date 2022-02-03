@@ -2,7 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack'
 import { FunctionComponent } from 'react'
 import { FlatList, Pressable } from 'react-native'
 
-import { Refresher, Separator, ServiceCard } from '../components'
+import { Loading, Refresher, Separator, ServiceCard } from '../components'
 import { useOwners, useServices } from '../hooks'
 import { tw } from '../lib'
 import { ServicesParamList } from '../navigators'
@@ -10,8 +10,12 @@ import { ServicesParamList } from '../navigators'
 type Props = StackScreenProps<ServicesParamList, 'List'>
 
 export const Services: FunctionComponent<Props> = ({ navigation }) => {
-  const { reload, reloading, services } = useServices()
+  const { loading, reload, reloading, services } = useServices()
   const { owners } = useOwners()
+
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <FlatList
