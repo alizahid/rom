@@ -3,11 +3,12 @@ import { FunctionComponent } from 'react'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 import { StackHeader } from '../components'
-import { Service, Services } from '../scenes'
+import { Services } from '../scenes'
+import { ServiceNavigator } from './service'
 
 export type ServicesParamList = {
   List: undefined
-  Service: {
+  Details: {
     id: string
   }
 }
@@ -30,7 +31,13 @@ export const ServicesNavigator: FunctionComponent = () => {
           title: 'Services'
         }}
       />
-      <Screen component={Service} name="Service" />
+      <Screen
+        component={ServiceNavigator}
+        name="Details"
+        options={{
+          title: 'Service'
+        }}
+      />
     </Navigator>
   )
 }

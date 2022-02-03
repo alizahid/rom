@@ -17,10 +17,10 @@ const { Navigator, Screen } = createBottomTabNavigator<MainParamList>()
 export const MainNavigator: FunctionComponent = () => (
   <Navigator
     screenOptions={{
-      header: TabHeader,
+      header: (props) => <TabHeader {...props} />,
       lazy: true
     }}
-    tabBar={TabBar}>
+    tabBar={(props) => <TabBar {...props} />}>
     <Screen
       component={ServicesNavigator}
       name="Services"

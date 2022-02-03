@@ -25,7 +25,7 @@ export const Services: FunctionComponent<Props> = ({ navigation }) => {
       renderItem={({ item }) => (
         <Pressable
           onPress={() =>
-            navigation.navigate('Service', {
+            navigation.navigate('Details', {
               id: item.id
             })
           }
