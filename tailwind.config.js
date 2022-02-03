@@ -11,10 +11,10 @@ module.exports = {
       }
     },
     fontFamily: {
-      'render-bold': ['IBMPlexMono-Bold'],
-      'render-medium': ['IBMPlexMono-Medium'],
-      'render-regular': ['IBMPlexMono-Regular'],
-      'render-semibold': ['IBMPlexMono-SemiBold']
+      'render-bold': ['Satoshi-Bold'],
+      'render-medium': ['Satoshi-Medium'],
+      'render-mono': ['iAWriterMonoS-Regular'],
+      'render-regular': ['Satoshi-Regular']
     }
   }
 }

@@ -16,12 +16,12 @@ export const ServiceCard: FunctionComponent<Props> = ({ item }) => (
       </Text>
 
       <View style={tw`flex-row my-2`}>
-        <Text style={tw`text-sm text-gray-600 font-render-regular`}>
+        <Text style={tw`text-sm text-gray-600 font-render-mono`}>
           {item.type}
         </Text>
 
         {item.type !== 'static_site' && (
-          <Text style={tw`ml-2 text-sm text-gray-600 font-render-regular`}>
+          <Text style={tw`ml-2 text-sm text-gray-600 font-render-mono`}>
             {item.serviceDetails.env}
           </Text>
         )}

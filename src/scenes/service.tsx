@@ -13,7 +13,7 @@ export const Service: FunctionComponent<Props> = ({ route }) => {
 
   return (
     <ScrollView contentContainerStyle={tw`p-4`}>
-      <Text style={tw`text-xs font-render-regular`}>
+      <Text style={tw`text-xs font-render-mono`}>
         {JSON.stringify(service, null, 2)}
       </Text>
     </ScrollView>

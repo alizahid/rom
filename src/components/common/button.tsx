@@ -4,7 +4,6 @@ import {
   Pressable,
   StyleProp,
   Text,
-  TextStyle,
   ViewStyle
 } from 'react-native'
 
@@ -33,7 +32,7 @@ export const Button: FunctionComponent<Props> = ({
       ),
       style
     ]}>
-    <Text style={tw`text-base text-white font-render-semibold`}>{title}</Text>
+    <Text style={tw`text-base text-white font-render-bold`}>{title}</Text>
 
     {loading && <Spinner light style={tw`ml-3`} />}
   </Pressable>
