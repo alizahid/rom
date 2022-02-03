@@ -24,18 +24,15 @@ export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
     {
       label: 'Id',
       mono: true,
-      selectable: true,
       value: service.id
     },
     {
       label: 'Slug',
       mono: true,
-      selectable: true,
       value: service.slug
     },
     {
       label: 'Name',
-      selectable: true,
       value: service.name
     },
     owner
@@ -46,18 +43,17 @@ export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
       : undefined,
     {
       label: 'Git repo',
-      selectable: true,
+      mono: true,
       value: service.repo
     },
     {
       label: 'Git branch',
-      selectable: true,
+      mono: true,
       value: service.branch
     },
     {
       label: 'Type',
       mono: true,
-      selectable: true,
       value: service.type
     },
     {
@@ -92,12 +88,14 @@ export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
       refreshControl={<Refresher onRefresh={reload} refreshing={reloading} />}
       renderItem={({ item }) => (
         <View style={tw`p-4`}>
-          <Text style={tw`text-sm font-blender-medium`}>{item.label}</Text>
+          <Text style={tw`text-sm text-gray-600 font-blender-medium`}>
+            {item.label}
+          </Text>
 
           <Text
-            selectable={item.selectable}
+            selectable
             style={tw.style(
-              'text-base mt-1',
+              'text-base mt-1 text-black',
               item.mono ? 'font-blender-mono' : 'font-blender-regular'
             )}>
             {item.value}
