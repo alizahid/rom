@@ -2,7 +2,6 @@
 
 export { Button } from './common/button'
 export { ArrowIcon } from './common/icon/arrow'
-export { ExpandIcon } from './common/icon/expand'
 export { Input } from './common/input'
 export { Loading } from './common/loading'
 export { Refresher } from './common/refresher'

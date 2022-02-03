@@ -8,6 +8,7 @@ import { ServicesNavigator } from './services'
 export type MainParamList = {
   Services: undefined
   Databases: undefined
+  Teams: undefined
   Settings: undefined
 }
 
@@ -16,7 +17,8 @@ const { Navigator, Screen } = createBottomTabNavigator<MainParamList>()
 export const MainNavigator: FunctionComponent = () => (
   <Navigator
     screenOptions={{
-      header: TabHeader
+      header: TabHeader,
+      lazy: true
     }}
     tabBar={TabBar}>
     <Screen
@@ -27,6 +29,7 @@ export const MainNavigator: FunctionComponent = () => (
       }}
     />
     <Screen component={Soon} name="Databases" />
+    <Screen component={Soon} name="Teams" />
     <Screen component={Settings} name="Settings" />
   </Navigator>
 )

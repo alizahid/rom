@@ -2,38 +2,36 @@ import { StackScreenProps } from '@react-navigation/stack'
 import { FunctionComponent } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 
-import { ArrowIcon, ExpandIcon } from '../components'
-import { ArrowDirection } from '../components/common/icon/arrow'
-import { ExpandDirection } from '../components/common/icon/expand'
+import {
+  ArrowDirection,
+  ArrowIcon,
+  ArrowType
+} from '../components/common/icon/arrow'
 import { tw } from '../lib'
 import { MainParamList } from '../navigators'
 
 type Props = StackScreenProps<MainParamList, 'Settings'>
 
-export const Settings: FunctionComponent<Props> = () => {
-  return (
-    <ScrollView>
-      <View>
+export const Settings: FunctionComponent<Props> = () => (
+  <ScrollView>
+    {['arrow', 'expand'].map((type) => (
+      <View key={type} style={tw`flex-row`}>
         {['up', 'down', 'left', 'right'].map((direction) => (
-          <View key={direction} style={tw`flex-row items-center m-3`}>
-            <ExpandIcon direction={direction as ExpandDirection} />
-            <Text style={tw`ml-3 text-sm font-render-regular`}>
-              {direction}
-            </Text>
-          </View>
-        ))}
-      </View>
+          <View
+            key={direction}
+            style={tw`flex-row items-center p-2 m-2 bg-gray-100 rounded-lg`}>
+            <ArrowIcon
+              direction={direction as ArrowDirection}
+              size={20}
+              type={type as ArrowType}
+            />
 
-      <View style={tw`mt-6`}>
-        {['up', 'down', 'left', 'right'].map((direction) => (
-          <View key={direction} style={tw`flex-row items-center m-3`}>
-            <ArrowIcon direction={direction as ArrowDirection} />
-            <Text style={tw`ml-3 text-sm font-render-regular`}>
+            <Text style={tw`ml-2 text-sm font-render-regular`}>
               {direction}
             </Text>
           </View>
         ))}
       </View>
-    </ScrollView>
-  )
-}
+    ))}
+  </ScrollView>
+)

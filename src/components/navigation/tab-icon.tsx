@@ -6,12 +6,12 @@ import { tw } from '../../lib'
 
 type Props = {
   focused: boolean
-  name: NavIconName
+  name: TabIconName
   size?: number
   style?: StyleProp<ViewStyle>
 }
 
-export const NavIcon: FunctionComponent<Props> = ({
+export const TabIcon: FunctionComponent<Props> = ({
   focused,
   name,
   size = 24,
@@ -27,7 +27,7 @@ export const NavIcon: FunctionComponent<Props> = ({
   </Svg>
 )
 
-export type NavIconName = keyof typeof icons
+export type TabIconName = keyof typeof icons
 
 const icons = {
   databases: (
@@ -59,6 +59,17 @@ const icons = {
         opacity=".35"
       />
       <Path d="M12,8c-2.209,0-4,1.791-4,4s1.791,4,4,4s4-1.791,4-4S14.209,8,12,8z" />
+    </>
+  ),
+  teams: (
+    <>
+      <Path
+        d="M18.514,4.709L13,2H7L1.486,4.709C1.184,4.889,1,5.215,1,5.566V8	c0,0.552,0.448,1,1,1h1c0.552,0,1,0.448,1,1v7c0,1.105,0.895,2,2,2h8c1.105,0,2-0.895,2-2v-7c0-0.552,0.448-1,1-1h1	c0.552,0,1-0.448,1-1V5.566C19,5.215,18.816,4.889,18.514,4.709z"
+        opacity=".35"
+      />
+      <Path d="M7,2h6c0,1.657-1.343,3-3,3S7,3.657,7,2z" />
+      <Path d="M22.514,7.709L19,5.982V8c0,0.552-0.448,1-1,1h-1c-0.552,0-1,0.448-1,1v7c0,1.105-0.895,2-2,2H8v1c0,1.105,0.895,2,2,2h8	c1.105,0,2-0.895,2-2v-7c0-0.552,0.448-1,1-1h1c0.552,0,1-0.448,1-1V8.566C23,8.215,22.816,7.889,22.514,7.709z" />
+      <Path d="M13,10c0-1.657-1.343-3-3-3s-3,1.343-3,3c0,0.549,0.158,1.057,0.416,1.5C7.158,11.943,7,12.451,7,13c0,1.657,1.343,3,3,3	s3-1.343,3-3c0-0.549-0.158-1.057-0.416-1.5C12.842,11.057,13,10.549,13,10z M10,14c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1	s1,0.448,1,1C11,13.552,10.552,14,10,14z M10,11c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1s1,0.448,1,1C11,10.552,10.552,11,10,11z" />
     </>
   )
 }
