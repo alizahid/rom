@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react'
 import { FlatList, Pressable } from 'react-native'
 
 import { Refresher, Separator, ServiceCard } from '../components'
-import { useServices } from '../hooks'
+import { useOwners, useServices } from '../hooks'
 import { tw } from '../lib'
 import { ServicesParamList } from '../navigators'
 
@@ -11,6 +11,7 @@ type Props = StackScreenProps<ServicesParamList, 'List'>
 
 export const Services: FunctionComponent<Props> = ({ navigation }) => {
   const { reload, reloading, services } = useServices()
+  const { owners } = useOwners()
 
   return (
     <FlatList
@@ -25,7 +26,7 @@ export const Services: FunctionComponent<Props> = ({ navigation }) => {
             })
           }
           style={tw`p-4`}>
-          <ServiceCard item={item} />
+          <ServiceCard item={item} owners={owners} />
         </Pressable>
       )}
     />
