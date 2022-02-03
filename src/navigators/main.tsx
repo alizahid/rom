@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { FunctionComponent } from 'react'
 
 import { TabBar, TabHeader } from '../components'
-import { Settings, Soon } from '../scenes'
+import { Settings, Soon, Teams } from '../scenes'
 import { ServicesNavigator } from './services'
 
 export type MainParamList = {
@@ -29,7 +29,7 @@ export const MainNavigator: FunctionComponent = () => (
       }}
     />
     <Screen component={Soon} name="Databases" />
-    <Screen component={Soon} name="Teams" />
+    <Screen component={Teams} name="Teams" />
     <Screen component={Settings} name="Settings" />
   </Navigator>
 )

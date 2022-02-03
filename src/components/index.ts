@@ -1,7 +1,9 @@
 // common
 
+export { Avatar } from './common/avatar'
 export { Button } from './common/button'
 export { ArrowIcon } from './common/icon/arrow'
+export { Icon } from './common/icon/icon'
 export { Input } from './common/input'
 export { Loading } from './common/loading'
 export { Refresher } from './common/refresher'

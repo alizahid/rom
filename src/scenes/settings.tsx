@@ -1,37 +1,57 @@
 import { StackScreenProps } from '@react-navigation/stack'
+import * as Linking from 'expo-linking'
 import { FunctionComponent } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
-import {
-  ArrowDirection,
-  ArrowIcon,
-  ArrowType
-} from '../components/common/icon/arrow'
+import { Avatar, Icon, Spinner } from '../components'
+import { Menu } from '../components/common/menu'
+import { useProfile } from '../hooks'
 import { tw } from '../lib'
 import { MainParamList } from '../navigators'
+import { useAuth } from '../stores'
 
 type Props = StackScreenProps<MainParamList, 'Settings'>
 
-export const Settings: FunctionComponent<Props> = () => (
-  <ScrollView>
-    {['arrow', 'expand'].map((type) => (
-      <View key={type} style={tw`flex-row`}>
-        {['up', 'down', 'left', 'right'].map((direction) => (
-          <View
-            key={direction}
-            style={tw`flex-row items-center p-2 m-2 bg-gray-100 rounded-lg`}>
-            <ArrowIcon
-              direction={direction as ArrowDirection}
-              size={20}
-              type={type as ArrowType}
-            />
+export const Settings: FunctionComponent<Props> = () => {
+  const [, { signOut }] = useAuth()
 
-            <Text style={tw`ml-2 text-sm font-blender-regular`}>
-              {direction}
-            </Text>
-          </View>
-        ))}
-      </View>
-    ))}
-  </ScrollView>
-)
+  const { profile } = useProfile()
+
+  return (
+    <Menu
+      header={
+        <View style={tw`flex-row items-center p-4 border-b border-gray-100`}>
+          {profile ? (
+            <>
+              <Avatar email={profile.email} />
+
+              <View style={tw`flex-1 ml-3`}>
+                <Text style={tw`text-base text-black font-blender-medium`}>
+                  {profile.name}
+                </Text>
+
+                <Text style={tw`text-sm text-gray-600 font-blender-regular`}>
+                  {profile.email}
+                </Text>
+              </View>
+            </>
+          ) : (
+            <Spinner />
+          )}
+        </View>
+      }
+      items={[
+        {
+          icon: <Icon name="about" />,
+          label: 'About',
+          onPress: () => Linking.openURL('https://blender.onrender.com')
+        },
+        {
+          icon: <Icon name="exit" />,
+          label: 'Sign out',
+          onPress: () => signOut()
+        }
+      ]}
+    />
+  )
+}

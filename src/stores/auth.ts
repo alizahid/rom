@@ -1,7 +1,7 @@
 import { Action, createHook, createStore } from 'react-sweet-state'
 
 import { fetchOwners } from '../hooks'
-import { storage } from '../lib'
+import { client, storage } from '../lib'
 
 type State = {
   authenticated: boolean
@@ -53,6 +53,7 @@ const actions = {
 
       const owner = owners[0].id
 
+      await storage.put('user', owner)
       await storage.put('owner', owner)
 
       setState({
@@ -68,7 +69,11 @@ const actions = {
         authenticated: false
       })
 
+      await storage.remove('owner')
+      await storage.remove('user')
       await storage.remove('token')
+
+      client.clear()
     }
 }
 

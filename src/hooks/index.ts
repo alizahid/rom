@@ -1,6 +1,7 @@
 // auth
 
 export * from './auth/owners'
+export * from './auth/profile'
 
 // services
 

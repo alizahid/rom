@@ -1,11 +1,11 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactElement } from 'react'
 import { Pressable, StyleProp, ViewStyle } from 'react-native'
 
 import { tw } from '../../lib'
 import { Spinner } from '../common/spinner'
 
 type Props = {
-  icon: ReactNode
+  icon: ReactElement
   loading?: boolean
   style?: StyleProp<ViewStyle>
 

@@ -6,6 +6,7 @@ export { Soon } from './soon'
 // settings
 
 export { Settings } from './settings'
+export { Teams } from './teams'
 
 // services
 
