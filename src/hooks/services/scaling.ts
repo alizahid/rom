@@ -13,16 +13,16 @@ type Returns = {
 }
 
 export const updateServiceScaling = async (
-  id: string,
+  serviceId: string,
   instances: number
 ): Promise<void> => {
   try {
-    await api<Service>({
+    await api({
       data: {
         numInstances: instances
       },
       method: 'post',
-      url: `/services/${id}/scale`
+      url: `/services/${serviceId}/scale`
     })
   } catch (error) {
     if (error.response?.status !== 500) {
