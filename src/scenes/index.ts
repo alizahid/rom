@@ -14,6 +14,7 @@ export { Services } from './services'
 
 // service
 
+export { ServiceDanger } from './service/danger'
 export { ServiceEnvironmentVariables } from './service/env'
 export { ServiceInfo } from './service/info'
 export { ServiceScaling } from './service/scaling'

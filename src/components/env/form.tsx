@@ -12,10 +12,10 @@ import { useUpdateEnvVars } from '../../hooks/env/update'
 import { tw } from '../../lib'
 import { EnvVar, EnvVarInput } from '../../types'
 import { Input } from '../common/input'
-import { Modal } from '../common/modal'
-import { ModalButton } from '../common/modal/button'
 import { Switch } from '../common/switch'
 import { Icon } from '../icon/icon'
+import { Modal } from '../modal'
+import { ModalButton } from '../modal/button'
 
 type Props = {
   item?: EnvVar

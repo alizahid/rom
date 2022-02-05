@@ -6,8 +6,8 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { useUpdateServiceScaling } from '../../hooks'
 import { tw } from '../../lib'
 import { Service, WebService } from '../../types'
-import { Message } from '..'
 import { Button } from '../common/button'
+import { Message } from '../common/message'
 
 type Props = {
   service: Service

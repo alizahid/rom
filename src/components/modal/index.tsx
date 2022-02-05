@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native'
 
-import { tw } from '../../../lib'
+import { tw } from '../../lib'
 
 type Props = {
   footer?: ReactElement

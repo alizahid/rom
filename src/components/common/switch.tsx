@@ -12,9 +12,9 @@ import { tw } from '../../lib'
 
 type Props = {
   label: string
-  value: boolean
   style?: StyleProp<ViewStyle>
   styleLabel?: StyleProp<TextStyle>
+  value: boolean
 
   onChange: (value: boolean) => void
 }

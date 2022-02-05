@@ -1,13 +1,15 @@
 import { FunctionComponent } from 'react'
 import { Pressable, Text } from 'react-native'
 
-import { tw } from '../../../lib'
-import { Spinner } from '../spinner'
+import { tw } from '../../lib'
+import { Spinner } from '../common/spinner'
+
+export type ModalButtonType = 'good' | 'bad' | 'neutral'
 
 export type ModalButtonProps = {
   label: string
   loading?: boolean
-  type?: 'good' | 'bad' | 'neutral'
+  type?: ModalButtonType
 
   onPress: () => unknown
 }

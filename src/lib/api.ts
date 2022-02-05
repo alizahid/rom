@@ -24,8 +24,12 @@ export const api = async <T>({
       ...params
     },
     transformResponse: [
-      (data) =>
-        JSON.parse(data, (key, value) => {
+      (data) => {
+        if (!data) {
+          return data
+        }
+
+        return JSON.parse(data, (key, value) => {
           if (key.endsWith('At')) {
             return parseISO(value)
           }
@@ -40,6 +44,7 @@ export const api = async <T>({
 
           return value
         })
+      }
     ],
     url
   })

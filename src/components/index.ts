@@ -5,15 +5,22 @@ export { Button } from './common/button'
 export { Input } from './common/input'
 export { Loading } from './common/loading'
 export { Message } from './common/message'
-export { Modal } from './common/modal'
 export { Refresher } from './common/refresher'
 export { Separator } from './common/separator'
 export { Spinner } from './common/spinner'
+
+// dialog
+
+export { ConfirmDialog } from './dialog/confirm'
 
 // icon
 
 export { ArrowIcon } from './icon/arrow'
 export { Icon } from './icon/icon'
+
+// modal
+
+export { Modal } from './modal'
 
 // navigation
 
@@ -25,6 +32,7 @@ export { TabHeader } from './navigation/tab-header'
 // services
 
 export { ServiceCard } from './services/card'
+export { ServiceDangerCard } from './services/danger'
 export { ServiceScalingCard } from './services/scaling'
 
 // env

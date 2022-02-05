@@ -6,6 +6,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { TopTabBar } from '../components/navigation/top-tab-bar'
 import { useService } from '../hooks'
 import {
+  ServiceDanger,
   ServiceEnvironmentVariables,
   ServiceInfo,
   ServiceScaling,
@@ -90,7 +91,7 @@ export const ServiceNavigator: FunctionComponent<Props> = ({ route }) => {
           )}
 
           <Screen
-            component={Soon}
+            component={ServiceDanger}
             initialParams={params}
             name="Danger"
             options={{

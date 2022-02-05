@@ -31,8 +31,6 @@ export const updateEnvVars = async (
     })
   }
 
-  console.log('next', next)
-
   const response = await api<
     Array<{
       envVar: EnvVar
