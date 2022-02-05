@@ -14,4 +14,5 @@ export { Services } from './services'
 
 // service
 
+export { ServiceEnvironmentVariables } from './service/env'
 export { ServiceInfo } from './service/info'

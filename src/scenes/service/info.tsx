@@ -1,4 +1,4 @@
-import { StackScreenProps } from '@react-navigation/stack'
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs'
 import compact from 'lodash/compact'
 import { FunctionComponent } from 'react'
 import { FlatList, Text, View } from 'react-native'
@@ -8,7 +8,7 @@ import { useOwners, useService } from '../../hooks'
 import { tw } from '../../lib'
 import { ServiceParamList } from '../../navigators'
 
-type Props = StackScreenProps<ServiceParamList, 'Info'>
+type Props = MaterialTopTabScreenProps<ServiceParamList, 'Info'>
 
 export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
   const { reload, reloading, service } = useService(route.params.id)

@@ -5,7 +5,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 import { TopTabBar } from '../components/navigation/top-tab-bar'
 import { useService } from '../hooks'
-import { ServiceInfo, Soon } from '../scenes'
+import { ServiceEnvironmentVariables, ServiceInfo, Soon } from '../scenes'
 import { ServicesParamList } from './services'
 
 type Params = {
@@ -57,28 +57,39 @@ export const ServiceNavigator: FunctionComponent<Props> = ({ route }) => {
       tabBar={(props) => <TopTabBar {...props} />}>
       <Screen component={ServiceInfo} initialParams={params} name="Info" />
 
-      {hasScaling && (
-        <Screen component={Soon} initialParams={params} name="Scaling" />
+      {service && (
+        <>
+          {hasScaling && (
+            <Screen component={Soon} initialParams={params} name="Scaling" />
+          )}
+
+          <Screen
+            component={ServiceEnvironmentVariables}
+            initialParams={params}
+            name="EnvironmentVariables"
+            options={{
+              title: 'Environment variables'
+            }}
+          />
+
+          {hasHeaders && (
+            <Screen component={Soon} initialParams={params} name="Headers" />
+          )}
+
+          {hasRoutes && (
+            <Screen component={Soon} initialParams={params} name="Routes" />
+          )}
+
+          <Screen
+            component={Soon}
+            initialParams={params}
+            name="Danger"
+            options={{
+              title: 'Danger zone'
+            }}
+          />
+        </>
       )}
-
-      <Screen
-        component={Soon}
-        initialParams={params}
-        name="EnvironmentVariables"
-        options={{
-          title: 'Environment variables'
-        }}
-      />
-
-      {hasHeaders && (
-        <Screen component={Soon} initialParams={params} name="Headers" />
-      )}
-
-      {hasRoutes && (
-        <Screen component={Soon} initialParams={params} name="Routes" />
-      )}
-
-      <Screen component={Soon} initialParams={params} name="Danger" />
     </Navigator>
   )
 }

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { QueryKey, useQuery } from 'react-query'
 
 import { api } from '../../lib'
 import { Service } from '../../types'
@@ -20,8 +20,10 @@ export const fetchService = async (id: string): Promise<Service> => {
 }
 
 export const useService = (id: string): Returns => {
+  const queryKey: QueryKey = ['services', id]
+
   const { data, isLoading, isRefetching, refetch } = useQuery<Service, Error>(
-    `services-${id}`,
+    queryKey,
     () => fetchService(id)
   )
 

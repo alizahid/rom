@@ -9,7 +9,7 @@ export const api = async <T>({
   method,
   params,
   url
-}: AxiosRequestConfig<T>): Promise<T> => {
+}: AxiosRequestConfig): Promise<T> => {
   const token = await storage.get<string>('token')
 
   const { data: response } = await axios.request<T>({

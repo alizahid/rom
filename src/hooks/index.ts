@@ -7,3 +7,7 @@ export * from './auth/profile'
 
 export * from './services/service'
 export * from './services/services'
+
+// env
+
+export * from './env/env-vars'

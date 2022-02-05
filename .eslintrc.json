@@ -30,6 +30,7 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
     "prettier/prettier": "error",
     "react/jsx-sort-props": "error",
     "react/prop-types": "off",

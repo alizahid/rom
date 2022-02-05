@@ -1,3 +1,4 @@
+export * from './animate'
 export * from './api'
 export * from './client'
 export * from './config'

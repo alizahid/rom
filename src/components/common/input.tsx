@@ -1,13 +1,26 @@
-import { forwardRef, FunctionComponent } from 'react'
-import { Text, TextInput, TextInputProps, View } from 'react-native'
+import { forwardRef, useState } from 'react'
+import {
+  StyleProp,
+  Text,
+  TextInput,
+  TextInputProps,
+  TextStyle,
+  View
+} from 'react-native'
 
 import { tw } from '../../lib'
 
 type Props = {
+  styleInput?: StyleProp<TextStyle>
   label: string
 } & Pick<
   TextInputProps,
+  | 'autoCapitalize'
+  | 'autoCompleteType'
+  | 'autoCorrect'
+  | 'editable'
   | 'keyboardType'
+  | 'multiline'
   | 'onChangeText'
   | 'onSubmitEditing'
   | 'placeholder'
@@ -18,18 +31,34 @@ type Props = {
 >
 
 export const Input = forwardRef<TextInput, Props>(
-  ({ label, style, ...props }, ref) => (
-    <View style={style}>
-      <Text style={tw`text-sm text-gray-600 font-blender-medium`}>{label}</Text>
+  ({ label, style, styleInput, ...props }, ref) => {
+    const [focused, setFocused] = useState(false)
 
-      <TextInput
-        {...props}
-        placeholderTextColor={tw.color('gray-600')}
-        ref={ref}
-        style={tw`w-full h-12 px-4 mt-2 text-base leading-tight bg-gray-100 rounded-lg font-blender-regular`}
-      />
-    </View>
-  )
+    return (
+      <View style={style}>
+        <Text style={tw`text-sm text-gray-600 font-blender-medium`}>
+          {label}
+        </Text>
+
+        <TextInput
+          {...props}
+          onBlur={() => setFocused(false)}
+          onFocus={() => setFocused(true)}
+          placeholderTextColor={tw.color('gray-400')}
+          ref={ref}
+          style={[
+            tw.style(
+              'w-full px-4 mt-2 text-base leading-tight rounded-lg font-blender-regular',
+              props.multiline ? 'h-48 py-4' : 'h-12',
+              focused ? 'bg-gray-200' : 'bg-gray-100',
+              props.editable === false && 'bg-gray-300 text-gray-600'
+            ),
+            styleInput
+          ]}
+        />
+      </View>
+    )
+  }
 )
 
 Input.displayName = 'Input'
