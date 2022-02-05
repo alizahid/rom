@@ -3,7 +3,7 @@ import { Pressable, Text, View } from 'react-native'
 
 import { tw } from '../../lib'
 import { EnvVar } from '../../types'
-import { Icon } from '../common/icon/icon'
+import { Icon } from '../icon/icon'
 import { EnvVarForm } from './form'
 
 type Props = {

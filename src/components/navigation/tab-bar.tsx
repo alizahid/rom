@@ -4,7 +4,7 @@ import { Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { tw } from '../../lib'
-import { TabIcon, TabIconName } from './tab-icon'
+import { TabIcon, TabIconName } from '../icon/tab'
 
 export const TabBar: FunctionComponent<BottomTabBarProps> = ({
   navigation,

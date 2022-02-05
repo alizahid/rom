@@ -3,7 +3,7 @@ import compact from 'lodash/compact'
 import { FunctionComponent } from 'react'
 import { FlatList, Text, View } from 'react-native'
 
-import { Loading, Refresher, Separator } from '../../components'
+import { Loading, Message, Refresher, Separator } from '../../components'
 import { useOwners, useService } from '../../hooks'
 import { tw } from '../../lib'
 import { ServiceParamList } from '../../navigators'
@@ -11,16 +11,34 @@ import { ServiceParamList } from '../../navigators'
 type Props = MaterialTopTabScreenProps<ServiceParamList, 'Info'>
 
 export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
-  const { reload, reloading, service } = useService(route.params.id)
+  const { error, loading, reload, reloading, service } = useService(
+    route.params.id
+  )
+
   const { owners } = useOwners()
 
-  if (!service) {
+  if (loading) {
     return <Loading />
+  }
+
+  if (error || !service) {
+    return (
+      <Message
+        action={{
+          label: 'Reload',
+          loading: reloading,
+          onPress: reload
+        }}
+        big
+        message={error}
+        type="error"
+      />
+    )
   }
 
   const owner = owners?.find(({ id }) => id === service.ownerId)
 
-  const data = [
+  const data = compact([
     {
       label: 'Id',
       mono: true,
@@ -78,12 +96,12 @@ export const ServiceInfo: FunctionComponent<Props> = ({ route }) => {
         timeStyle: 'medium'
       })
     }
-  ]
+  ])
 
   return (
     <FlatList
       ItemSeparatorComponent={Separator}
-      data={compact(data)}
+      data={data}
       keyExtractor={({ label }) => label}
       refreshControl={<Refresher onRefresh={reload} refreshing={reloading} />}
       renderItem={({ item }) => (

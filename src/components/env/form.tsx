@@ -1,14 +1,21 @@
-import { FunctionComponent, useState } from 'react'
-import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native'
+import { FunctionComponent, useCallback, useRef, useState } from 'react'
+import {
+  Pressable,
+  StyleProp,
+  Text,
+  TextInput,
+  View,
+  ViewStyle
+} from 'react-native'
 
 import { useUpdateEnvVars } from '../../hooks/env/update'
 import { tw } from '../../lib'
-import { EnvVar } from '../../types'
-import { Icon } from '../common/icon/icon'
+import { EnvVar, EnvVarInput } from '../../types'
 import { Input } from '../common/input'
 import { Modal } from '../common/modal'
 import { ModalButton } from '../common/modal/button'
 import { Switch } from '../common/switch'
+import { Icon } from '../icon/icon'
 
 type Props = {
   item?: EnvVar
@@ -25,9 +32,40 @@ export const EnvVarForm: FunctionComponent<Props> = ({
 
   const [visible, setVisible] = useState(false)
 
+  const keyRef = useRef<TextInput>(null)
+  const valueRef = useRef<TextInput>(null)
+
   const [key, setKey] = useState(item?.key ?? '')
   const [value, setValue] = useState(item?.value ?? '')
   const [generateValue, setGenerateValue] = useState(false)
+
+  const submit = useCallback(async () => {
+    if (loading) {
+      return
+    }
+
+    if (!key) {
+      return keyRef.current?.focus()
+    }
+
+    if (!generateValue && !value) {
+      return valueRef.current?.focus()
+    }
+
+    const data: EnvVarInput = generateValue
+      ? {
+          generateValue,
+          key
+        }
+      : {
+          key,
+          value
+        }
+
+    await updateEnvVars(data)
+
+    setVisible(false)
+  }, [generateValue, key, loading, updateEnvVars, value])
 
   return (
     <>
@@ -39,14 +77,29 @@ export const EnvVarForm: FunctionComponent<Props> = ({
         />
       </Pressable>
 
-      <Modal onClose={() => setVisible(false)} visible={visible}>
-        <View style={tw`p-4`}>
-          <Text style={tw`text-base text-center font-blender-bold`}>
-            {item ? `Edit ${item.key}` : 'Add env var'}
-          </Text>
-        </View>
+      <Modal
+        footer={
+          <View style={tw`flex-row`}>
+            <ModalButton label="Cancel" onPress={() => setVisible(false)} />
 
-        <View style={tw`p-4 border-t border-b border-gray-100`}>
+            <ModalButton
+              label={item ? 'Save' : 'Add'}
+              loading={loading}
+              onPress={submit}
+              type="good"
+            />
+          </View>
+        }
+        header={
+          <View style={tw`p-4`}>
+            <Text style={tw`text-base text-center font-blender-bold`}>
+              {item ? `Edit ${item.key}` : 'Add env var'}
+            </Text>
+          </View>
+        }
+        onClose={() => setVisible(false)}
+        visible={visible}>
+        <View style={tw`p-4`}>
           <Input
             autoCapitalize="none"
             autoCompleteType="off"
@@ -54,7 +107,10 @@ export const EnvVarForm: FunctionComponent<Props> = ({
             editable={!item}
             label="Key"
             onChangeText={setKey}
+            onSubmitEditing={() => valueRef.current?.focus()}
             placeholder="SECRET_TOKEN"
+            ref={keyRef}
+            returnKeyType="next"
             styleInput={tw`font-blender-mono`}
             value={key}
           />
@@ -76,36 +132,12 @@ export const EnvVarForm: FunctionComponent<Props> = ({
               multiline
               onChangeText={setValue}
               placeholder="U2I*X*k@H@*16"
+              ref={valueRef}
               style={tw`mt-4`}
-              styleInput={tw`font-blender-mono`}
+              styleInput={tw`h-48 font-blender-mono`}
               value={value}
             />
           )}
-        </View>
-
-        <View style={tw`flex-row`}>
-          <ModalButton label="Cancel" onPress={() => setVisible(false)} />
-
-          <ModalButton
-            label={item ? 'Save' : 'Add'}
-            loading={loading}
-            onPress={async () => {
-              await updateEnvVars(
-                generateValue
-                  ? {
-                      generateValue,
-                      key
-                    }
-                  : {
-                      key,
-                      value
-                    }
-              )
-
-              setVisible(false)
-            }}
-            type="good"
-          />
         </View>
       </Modal>
     </>

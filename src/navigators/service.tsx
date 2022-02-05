@@ -5,7 +5,12 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 import { TopTabBar } from '../components/navigation/top-tab-bar'
 import { useService } from '../hooks'
-import { ServiceEnvironmentVariables, ServiceInfo, Soon } from '../scenes'
+import {
+  ServiceEnvironmentVariables,
+  ServiceInfo,
+  ServiceScaling,
+  Soon
+} from '../scenes'
 import { ServicesParamList } from './services'
 
 type Params = {
@@ -60,7 +65,11 @@ export const ServiceNavigator: FunctionComponent<Props> = ({ route }) => {
       {service && (
         <>
           {hasScaling && (
-            <Screen component={Soon} initialParams={params} name="Scaling" />
+            <Screen
+              component={ServiceScaling}
+              initialParams={params}
+              name="Scaling"
+            />
           )}
 
           <Screen

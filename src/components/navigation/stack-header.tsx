@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { tw } from '../../lib'
-import { ArrowIcon } from '../common/icon/arrow'
+import { ArrowIcon } from '../icon/arrow'
 import { HeaderButton } from './header-button'
 
 export const StackHeader: FunctionComponent<StackHeaderProps> = ({

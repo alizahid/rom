@@ -4,6 +4,7 @@ import { api } from '../../lib'
 import { Owner } from '../../types'
 
 type Returns = {
+  error?: string
   loading: boolean
   owners?: Array<Owner>
   reloading: boolean
@@ -24,12 +25,13 @@ export const fetchOwners = async (): Promise<Array<Owner>> => {
 }
 
 export const useOwners = (): Returns => {
-  const { data, isLoading, isRefetching, refetch } = useQuery<
+  const { data, error, isLoading, isRefetching, refetch } = useQuery<
     Array<Owner>,
     Error
   >('owners', fetchOwners)
 
   return {
+    error: error?.message,
     loading: isLoading,
     owners: data,
     reload: refetch,

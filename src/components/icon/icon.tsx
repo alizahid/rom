@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import Svg, { Path } from 'react-native-svg'
 
-import { tw } from '../../../lib'
+import { tw } from '../../lib'
 
 export type IconName = keyof typeof icons
 

@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
-import { tw } from '../../../lib'
+import { tw } from '../../lib'
 
 export type ArrowDirection = 'up' | 'down' | 'left' | 'right'
 

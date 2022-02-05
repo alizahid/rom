@@ -2,14 +2,18 @@
 
 export { Avatar } from './common/avatar'
 export { Button } from './common/button'
-export { ArrowIcon } from './common/icon/arrow'
-export { Icon } from './common/icon/icon'
 export { Input } from './common/input'
 export { Loading } from './common/loading'
+export { Message } from './common/message'
 export { Modal } from './common/modal'
 export { Refresher } from './common/refresher'
 export { Separator } from './common/separator'
 export { Spinner } from './common/spinner'
+
+// icon
+
+export { ArrowIcon } from './icon/arrow'
+export { Icon } from './icon/icon'
 
 // navigation
 

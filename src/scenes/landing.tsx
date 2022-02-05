@@ -1,5 +1,5 @@
 import { FunctionComponent, useCallback, useRef, useState } from 'react'
-import { Text, TextInput } from 'react-native'
+import { TextInput } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Button, Input } from '../components'
@@ -14,12 +14,12 @@ export const Landing: FunctionComponent = () => {
   const [token, setToken] = useState('')
 
   const submit = useCallback(() => {
-    if (!token) {
-      return tokenRef.current?.focus()
-    }
-
     if (authenticating) {
       return
+    }
+
+    if (!token) {
+      return tokenRef.current?.focus()
     }
 
     signIn(token)

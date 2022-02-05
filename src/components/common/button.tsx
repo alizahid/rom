@@ -27,7 +27,7 @@ export const Button: FunctionComponent<Props> = ({
     onPress={onPress}
     style={({ pressed }) => [
       tw.style(
-        'items-center justify-center h-12 rounded-lg bg-primary-600 flex-row',
+        'items-center justify-center h-12 px-4 rounded-lg bg-primary-600 flex-row',
         pressed && 'bg-opacity-80'
       ),
       style

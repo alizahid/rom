@@ -4,6 +4,7 @@ import { api } from '../../lib'
 import { Service } from '../../types'
 
 type Returns = {
+  error?: string
   loading: boolean
   reloading: boolean
   services?: Array<Service>
@@ -24,12 +25,13 @@ export const fetchServices = async (): Promise<Array<Service>> => {
 }
 
 export const useServices = (): Returns => {
-  const { data, isLoading, isRefetching, refetch } = useQuery<
+  const { data, error, isLoading, isRefetching, refetch } = useQuery<
     Array<Service>,
     Error
   >('services', fetchServices)
 
   return {
+    error: error?.message,
     loading: isLoading,
     reload: refetch,
     reloading: isRefetching,

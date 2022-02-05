@@ -3,7 +3,7 @@ import * as Linking from 'expo-linking'
 import { FunctionComponent } from 'react'
 import { Text, View } from 'react-native'
 
-import { Avatar, Icon, Spinner } from '../components'
+import { Avatar, Icon, Message, Spinner } from '../components'
 import { Menu } from '../components/common/menu'
 import { useProfile } from '../hooks'
 import { tw } from '../lib'
@@ -15,13 +15,15 @@ type Props = StackScreenProps<MainParamList, 'Settings'>
 export const Settings: FunctionComponent<Props> = () => {
   const [, { signOut }] = useAuth()
 
-  const { profile } = useProfile()
+  const { error, profile } = useProfile()
 
   return (
     <Menu
       header={
         <View style={tw`flex-row items-center p-4 border-b border-gray-100`}>
-          {profile ? (
+          {error ? (
+            <Message message={error} type="error" />
+          ) : profile ? (
             <>
               <Avatar email={profile.email} />
 

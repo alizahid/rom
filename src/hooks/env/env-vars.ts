@@ -5,6 +5,7 @@ import { EnvVar } from '../../types'
 
 type Returns = {
   envVars?: Array<EnvVar>
+  error?: string
   loading: boolean
   reloading: boolean
 
@@ -28,13 +29,14 @@ export const fetchEnvVars = async (
 export const useEnvVars = (serviceId: string): Returns => {
   const queryKey: QueryKey = ['env-vars', serviceId]
 
-  const { data, isLoading, isRefetching, refetch } = useQuery<
+  const { data, error, isLoading, isRefetching, refetch } = useQuery<
     Array<EnvVar>,
     Error
   >(queryKey, () => fetchEnvVars(serviceId))
 
   return {
     envVars: data,
+    error: error?.message,
     loading: isLoading,
     reload: refetch,
     reloading: isRefetching

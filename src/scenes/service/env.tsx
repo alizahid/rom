@@ -7,6 +7,7 @@ import {
   EnvVarCard,
   EnvVarForm,
   Loading,
+  Message,
   Refresher,
   Separator
 } from '../../components'
@@ -22,7 +23,7 @@ export const ServiceEnvironmentVariables: FunctionComponent<Props> = ({
 }) => {
   const serviceId = route.params.id
 
-  const { envVars, loading, reload, reloading } = useEnvVars(serviceId)
+  const { envVars, error, loading, reload, reloading } = useEnvVars(serviceId)
 
   useFocusEffect(() => {
     navigation.getParent()?.setOptions({
@@ -40,9 +41,31 @@ export const ServiceEnvironmentVariables: FunctionComponent<Props> = ({
     return <Loading />
   }
 
+  if (error) {
+    return (
+      <Message
+        action={{
+          label: 'Reload',
+          loading: reloading,
+          onPress: reload
+        }}
+        big
+        message={error}
+        type="error"
+      />
+    )
+  }
+
   return (
     <FlatList
       ItemSeparatorComponent={Separator}
+      ListEmptyComponent={
+        <Message
+          big
+          message="No environment variables found for this service"
+        />
+      }
+      contentContainerStyle={tw`flex-grow`}
       data={envVars}
       refreshControl={<Refresher onRefresh={reload} refreshing={reloading} />}
       renderItem={({ item }) => (

@@ -48,13 +48,14 @@ export const Input = forwardRef<TextInput, Props>(
           ref={ref}
           style={[
             tw.style(
-              'w-full px-4 mt-2 text-base leading-tight rounded-lg font-blender-regular',
+              'w-full px-4 mt-2 text-base leading-tight rounded-lg font-blender-regular align-top items-start justify-start',
               props.multiline ? 'h-48 py-4' : 'h-12',
               focused ? 'bg-gray-200' : 'bg-gray-100',
               props.editable === false && 'bg-gray-300 text-gray-600'
             ),
             styleInput
           ]}
+          textAlignVertical="top"
         />
       </View>
     )

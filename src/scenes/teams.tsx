@@ -2,7 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack'
 import { FunctionComponent } from 'react'
 import { FlatList, Text, View } from 'react-native'
 
-import { Avatar, Loading, Refresher, Separator } from '../components'
+import { Avatar, Loading, Message, Refresher, Separator } from '../components'
 import { useOwners } from '../hooks'
 import { tw } from '../lib'
 import { MainParamList } from '../navigators'
@@ -10,7 +10,22 @@ import { MainParamList } from '../navigators'
 type Props = StackScreenProps<MainParamList, 'Teams'>
 
 export const Teams: FunctionComponent<Props> = () => {
-  const { loading, owners, reload, reloading } = useOwners()
+  const { error, loading, owners, reload, reloading } = useOwners()
+
+  if (error) {
+    return (
+      <Message
+        action={{
+          label: 'Reload',
+          loading: reloading,
+          onPress: reload
+        }}
+        big
+        message={error}
+        type="error"
+      />
+    )
+  }
 
   if (loading) {
     return <Loading />
