@@ -55,9 +55,11 @@ export const EnvVarForm: FunctionComponent<Props> = ({
     const data: EnvVarInput = generateValue
       ? {
           generateValue,
+          id: item?.id ?? 'new',
           key
         }
       : {
+          id: item?.id ?? 'new',
           key,
           value
         }
@@ -65,7 +67,11 @@ export const EnvVarForm: FunctionComponent<Props> = ({
     await updateEnvVars(data)
 
     setVisible(false)
-  }, [generateValue, key, loading, updateEnvVars, value])
+
+    setKey(item?.key ?? '')
+    setValue(item?.value ?? '')
+    setGenerateValue(false)
+  }, [generateValue, item, key, loading, updateEnvVars, value])
 
   return (
     <>
@@ -104,7 +110,6 @@ export const EnvVarForm: FunctionComponent<Props> = ({
             autoCapitalize="none"
             autoCompleteType="off"
             autoCorrect={false}
-            editable={!item}
             label="Key"
             onChangeText={setKey}
             onSubmitEditing={() => valueRef.current?.focus()}

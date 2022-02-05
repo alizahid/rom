@@ -1,3 +1,4 @@
+import orderBy from 'lodash/orderBy'
 import { useQuery } from 'react-query'
 
 import { api } from '../../lib'
@@ -35,6 +36,6 @@ export const useServices = (): Returns => {
     loading: isLoading,
     reload: refetch,
     reloading: isRefetching,
-    services: data
+    services: orderBy(data, 'updatedAt', 'desc')
   }
 }

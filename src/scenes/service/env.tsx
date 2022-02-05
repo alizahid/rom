@@ -67,6 +67,7 @@ export const ServiceEnvironmentVariables: FunctionComponent<Props> = ({
       }
       contentContainerStyle={tw`flex-grow`}
       data={envVars}
+      keyExtractor={({ id }) => id}
       refreshControl={<Refresher onRefresh={reload} refreshing={reloading} />}
       renderItem={({ item }) => (
         <EnvVarCard item={item} serviceId={serviceId} />

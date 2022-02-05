@@ -15,33 +15,40 @@ export const updateEnvVars = async (
   data: EnvVarInput,
   envVars: Array<EnvVarInput>
 ): Promise<Array<EnvVar>> => {
-  const index = envVars.findIndex(({ key }) => key === data.key)
-
   let next: Array<EnvVarInput>
 
-  if (index >= 0) {
+  if (data.id === 'new') {
+    next = update(envVars, {
+      $push: [data]
+    })
+  } else {
+    const index = envVars.findIndex(({ id }) => id === data.id)
+
     next = update(envVars, {
       [index]: {
         $set: data
       }
     })
-  } else {
-    next = update(envVars, {
-      $push: [data]
-    })
   }
 
   const response = await api<
     Array<{
+      cursor: string
       envVar: EnvVar
     }>
   >({
-    data: next,
+    data: next.map((data) => ({
+      ...data,
+      id: undefined
+    })),
     method: 'put',
     url: `/services/${serviceId}/env-vars`
   })
 
-  return response.map(({ envVar }) => envVar)
+  return response.map(({ cursor, envVar }) => ({
+    ...envVar,
+    id: cursor
+  }))
 }
 
 export const useUpdateEnvVars = (serviceId: string): Returns => {

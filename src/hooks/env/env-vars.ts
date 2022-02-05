@@ -17,13 +17,17 @@ export const fetchEnvVars = async (
 ): Promise<Array<EnvVar>> => {
   const data = await api<
     Array<{
+      cursor: string
       envVar: EnvVar
     }>
   >({
     url: `/services/${serviceId}/env-vars`
   })
 
-  return data.map(({ envVar }) => envVar)
+  return data.map(({ cursor, envVar }) => ({
+    ...envVar,
+    id: cursor
+  }))
 }
 
 export const useEnvVars = (serviceId: string): Returns => {
