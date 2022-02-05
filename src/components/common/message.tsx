@@ -37,12 +37,12 @@ export const Message: FunctionComponent<Props> = ({
           : 'flex-row p-3 rounded-lg items-center',
         !big &&
           (type === 'error'
-            ? 'bg-rose-200'
+            ? 'bg-rose-100'
             : type === 'success'
-            ? 'bg-emerald-200'
+            ? 'bg-emerald-100'
             : type === 'warning'
-            ? 'bg-amber-200'
-            : 'bg-sky-200')
+            ? 'bg-amber-100'
+            : 'bg-sky-100')
       ),
       style
     ]}>

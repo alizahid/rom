@@ -13,6 +13,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/slider": "4.1.12",
     "@react-navigation/bottom-tabs": "^6.1.0",
     "@react-navigation/material-top-tabs": "^6.1.1",
     "@react-navigation/native": "^6.0.7",

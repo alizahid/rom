@@ -25,6 +25,7 @@ export { TabHeader } from './navigation/tab-header'
 // services
 
 export { ServiceCard } from './services/card'
+export { ServiceScalingCard } from './services/scaling'
 
 // env
 
